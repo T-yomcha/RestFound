@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653678861819",
+    "project_id": "restfound-kt",
+    "storage_bucket": "restfound-kt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653678861819:android:cc29ec1acbd01bb0a67f5e",
+        "android_client_info": {
+          "package_name": "com.example.restfoundkt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653678861819-hj7i4nemv0au98kbpob0fes6nn57v6vr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaFwqirYWnCNQtLJIDMW5w98E-Op7Ftgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653678861819-hj7i4nemv0au98kbpob0fes6nn57v6vr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

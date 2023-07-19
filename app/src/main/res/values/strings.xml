@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rest Found</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoidHlvbWNoYSIsImEiOiJjbGg0cjM3MmQyMGI4M2NvZzB1c2c2Z2EzIn0.2NZFMvoh-iMHZtYXyF1YXA</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
