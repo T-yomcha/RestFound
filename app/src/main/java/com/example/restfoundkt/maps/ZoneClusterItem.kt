@@ -9,6 +9,7 @@ data class ZoneClusterItem(
     private val snippet: String,
     val polygonOptions: PolygonOptions
 ) : ClusterItem {
+
     override fun getTitle() = title
 
     override fun getSnippet() = snippet

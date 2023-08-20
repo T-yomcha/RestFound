@@ -1,33 +1,43 @@
 package com.example.restfoundkt.navigation
 
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.restfoundkt.maps.googleMapView
-
+import com.example.restfoundkt.maps.MapViewModel
+import com.example.restfoundkt.maps.mapsScreen
 import com.example.restfoundkt.presentation.login_screen.signInScreen
-import com.example.restfoundkt.presentation.signup_screen.SignUpViewModel
 import com.example.restfoundkt.presentation.signup_screen.signUpScreen
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
 
-@Composable
-fun NavigationGraph() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Screens.SignUpScreen.route
-    ) {
-        composable(route = Screens.SignInScreen.route) {
-            signInScreen(viewModel = hiltViewModel(), navController=navController)
-        }
-        composable(route = Screens.SignUpScreen.route) {
-            signUpScreen(viewModel = hiltViewModel(), navController=navController)
-        }
-        composable(route=Screens.MapsScreen.route){
-            googleMapView(navController = navController)
+@AndroidEntryPoint
+class NavigationGraph : ComponentActivity() {
+    private val viewModel: MapViewModel by viewModels()
+
+    @Composable
+    fun navigationGraph() {
+        val navController = rememberNavController()
+        NavHost(
+            navController = navController,
+            startDestination = Screens.SignUpScreen.route
+        ) {
+            composable(route = Screens.SignInScreen.route) {
+                signInScreen(viewModel = hiltViewModel(), navController = navController)
+            }
+            composable(route = Screens.SignUpScreen.route) {
+                signUpScreen(viewModel = hiltViewModel(), navController = navController)
+            }
+            composable(route = Screens.MapsScreen.route) {
+                mapsScreen(
+                    state = viewModel.state.value,
+                    setupClusterManager = viewModel::setupClusterManager,
+                    calculateZoneViewCenter = viewModel::calculateZoneLatLngBounds,
+                    navController = navController
+                )
+            }
         }
     }
 }
