@@ -8,10 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.restfoundkt.maps.googleMapView
+
 import com.example.restfoundkt.presentation.login_screen.signInScreen
 import com.example.restfoundkt.presentation.signup_screen.SignUpViewModel
 import com.example.restfoundkt.presentation.signup_screen.signUpScreen
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun NavigationGraph() {
@@ -27,7 +27,7 @@ fun NavigationGraph() {
             signUpScreen(viewModel = hiltViewModel(), navController=navController)
         }
         composable(route=Screens.MapsScreen.route){
-            googleMapView(navController=navController)
+            googleMapView(navController = navController)
         }
     }
 }
