@@ -16,32 +16,44 @@ import com.example.restfoundkt.maps.ZoneClusterManager
 import com.example.restfoundkt.maps.calculateCameraViewPoints
 import com.example.restfoundkt.maps.getCenterOfPolygon
 import com.google.android.gms.maps.model.LatLngBounds
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 
-class MapViewModel @Inject constructor() : ViewModel() {
+@HiltViewModel
+class MapViewModel @Inject constructor(): ViewModel() {
 
-    companion object {
-        val POLYGON_FILL_COLOR = Color.parseColor("#ABF44336")
-    }
-    val state:MutableState<MapState> = mutableStateOf(
+    val state: MutableState<MapState> = mutableStateOf(
         MapState(
-            lastKnownLocation =null,
+            lastKnownLocation = null,
             clusterItems = listOf(
                 ZoneClusterItem(
-                    id="zone-1",
+                    id = "zone-1",
                     title = "Zone 1",
-                    snippet ="This is zone 1",
+                    snippet = "This is Zone 1.",
                     polygonOptions = polygonOptions {
                         add(LatLng(49.105, -122.524))
-                        add(LatLng(4.101, -122.529))
+                        add(LatLng(49.101, -122.529))
                         add(LatLng(49.092, -122.501))
                         add(LatLng(49.1, -122.506))
+                        fillColor(POLYGON_FILL_COLOR)
+                    }
+                ),
+                ZoneClusterItem(
+                    id = "zone-2",
+                    title = "Zone 2",
+                    snippet = "This is Zone 2.",
+                    polygonOptions = polygonOptions {
+                        add(LatLng(49.110, -122.554))
+                        add(LatLng(49.107, -122.559))
+                        add(LatLng(49.103, -122.551))
+                        add(LatLng(49.112, -122.549))
                         fillColor(POLYGON_FILL_COLOR)
                     }
                 )
             )
         )
     )
+
     @SuppressLint("MissingPermission")
     fun getDeviceLocation(
         fusedLocationProviderClient: FusedLocationProviderClient
@@ -65,18 +77,24 @@ class MapViewModel @Inject constructor() : ViewModel() {
     }
 
     fun setupClusterManager(
-        context:Context,
+        context: Context,
         map: GoogleMap,
-    ):ZoneClusterManager{
-        val clusterManager=ZoneClusterManager(context, map)
+    ): ZoneClusterManager {
+        val clusterManager = ZoneClusterManager(context, map)
         clusterManager.addItems(state.value.clusterItems)
         return clusterManager
     }
 
-    fun calculateZoneLatLngBounds():LatLngBounds{
-        val latLngs=state.value.clusterItems.map{it.polygonOptions}
-            .map{it.points.map{LatLng(it.latitude, it.longitude)}}.flatten()
+    fun calculateZoneLatLngBounds(): LatLngBounds {
+        // Get all the points from all the polygons and calculate the camera view that will show them all.
+        val latLngs = state.value.clusterItems.map { it.polygonOptions }
+            .map { it.points.map { LatLng(it.latitude, it.longitude) } }.flatten()
         return latLngs.calculateCameraViewPoints().getCenterOfPolygon()
     }
 
+
+
+    companion object {
+        private val POLYGON_FILL_COLOR = Color.parseColor("#ABF44336")
+    }
 }

@@ -14,8 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 
 @AndroidEntryPoint
-class NavigationGraph : ComponentActivity() {
-    private val viewModel: MapViewModel by viewModels()
+class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity() {
 
     @Composable
     fun navigationGraph() {
@@ -35,7 +34,8 @@ class NavigationGraph : ComponentActivity() {
                     state = viewModel.state.value,
                     setupClusterManager = viewModel::setupClusterManager,
                     calculateZoneViewCenter = viewModel::calculateZoneLatLngBounds,
-                    navController = navController
+                    viewModel= hiltViewModel(),
+                    navController=navController
                 )
             }
         }

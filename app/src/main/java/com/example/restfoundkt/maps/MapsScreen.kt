@@ -15,6 +15,7 @@ import android.content.Context
 import android.location.Location
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.coroutines.launch
@@ -24,6 +25,7 @@ fun mapsScreen(
     state: MapState,
     setupClusterManager: (Context, GoogleMap)->ZoneClusterManager,
     calculateZoneViewCenter:()->LatLngBounds,
+    viewModel:MapViewModel= hiltViewModel(),
     navController: NavController
 )
 {
