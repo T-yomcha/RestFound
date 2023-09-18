@@ -55,7 +55,7 @@ fun signUpScreen(
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
             placeholder = {
-                Text(text = "Email", color=Color.White)
+                Text(text = "Email", color = Color.White)
             }
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -71,7 +71,7 @@ fun signUpScreen(
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
             placeholder = {
-                Text(text = "Password", color=Color.White)
+                Text(text = "Password", color = Color.White)
             }
 
         )
@@ -105,9 +105,9 @@ fun signUpScreen(
         Text(
             modifier = Modifier
                 .padding(top = 10.dp)
-                .clickable(onClick =  {
+                .clickable(onClick = {
                     navController.navigate(Screens.SignInScreen.route)
-                    isTextClicked=true
+                    isTextClicked = true
                 }),
 
             text = "Already have an account? Sign in",

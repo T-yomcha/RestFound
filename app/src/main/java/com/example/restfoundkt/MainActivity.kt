@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import com.example.restfoundkt.favorites.roomScreen
 import com.example.restfoundkt.maps.MapViewModel
 import com.example.restfoundkt.maps.StartMap
 import com.example.restfoundkt.maps.mapsScreen
@@ -25,20 +26,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val requestPermissionLauncher=registerForActivityResult(
+    private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) {
-            isGranded: Boolean -> if(isGranded){
-        viewModel.getDeviceLocation(fusedLocationProviderClient)
-    }
-    }
-
-    fun askPermission()=when{
-        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED->{
+    ) { isGranded: Boolean ->
+        if (isGranded) {
             viewModel.getDeviceLocation(fusedLocationProviderClient)
         }
-        else ->{
+    }
+
+    fun askPermission() = when {
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED -> {
+            viewModel.getDeviceLocation(fusedLocationProviderClient)
+        }
+        else -> {
             requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
@@ -51,7 +52,8 @@ class MainActivity : ComponentActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         askPermission()
         setContent {
-            NavigationGraph(viewModel=viewModel).navigationGraph()
+//            NavigationGraph(viewModel = viewModel).navigationGraph()
+            roomScreen()
         }
     }
 }

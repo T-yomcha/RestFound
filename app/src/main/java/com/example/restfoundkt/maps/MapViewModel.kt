@@ -20,7 +20,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 
 
 @HiltViewModel
-class MapViewModel @Inject constructor(): ViewModel() {
+class MapViewModel @Inject constructor() : ViewModel() {
 
     val state: MutableState<MapState> = mutableStateOf(
         MapState(
@@ -91,7 +91,6 @@ class MapViewModel @Inject constructor(): ViewModel() {
             .map { it.points.map { LatLng(it.latitude, it.longitude) } }.flatten()
         return latLngs.calculateCameraViewPoints().getCenterOfPolygon()
     }
-
 
 
     companion object {

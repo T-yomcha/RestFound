@@ -15,21 +15,21 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val repository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
 
-    val _signUpState= Channel<SignInState>()
+    val _signUpState = Channel<SignInState>()
     val signUpState = _signUpState.receiveAsFlow()
 
-    fun registerUser(email:String, password:String) = viewModelScope.launch {
-        repository.registerUser(email, password).collect{result ->
-            when(result){
-                is Resource.Success ->{
+    fun registerUser(email: String, password: String) = viewModelScope.launch {
+        repository.registerUser(email, password).collect { result ->
+            when (result) {
+                is Resource.Success -> {
                     _signUpState.send(SignInState(isSuccess = "Sign In Success"))
                 }
-                is Resource.Loading ->{
+                is Resource.Loading -> {
                     _signUpState.send(SignInState(isLoading = true))
                 }
-                is Resource.Error ->{
+                is Resource.Error -> {
                     _signUpState.send(SignInState(isError = result.message))
                 }
             }

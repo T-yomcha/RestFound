@@ -34,8 +34,8 @@ class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity()
                     state = viewModel.state.value,
                     setupClusterManager = viewModel::setupClusterManager,
                     calculateZoneViewCenter = viewModel::calculateZoneLatLngBounds,
-                    viewModel= hiltViewModel(),
-                    navController=navController
+                    viewModel = hiltViewModel(),
+                    navController = navController
                 )
             }
         }

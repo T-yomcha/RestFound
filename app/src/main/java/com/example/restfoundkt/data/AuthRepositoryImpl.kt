@@ -18,7 +18,7 @@ class AuthRepositoryImpl @Inject constructor(
     ): Flow<Resource<AuthResult>> {
         return flow<Resource<AuthResult>> {
             emit(Resource.Loading())
-            val result=firebaseAuth.signInWithEmailAndPassword(email, password).await()
+            val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
             emit(Resource.Success(result))
         }.catch {
             emit(Resource.Error(it.message.toString()))
@@ -32,7 +32,7 @@ class AuthRepositoryImpl @Inject constructor(
     ): Flow<Resource<AuthResult>> {
         return flow<Resource<AuthResult>> {
             emit(Resource.Loading())
-            val result=firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             emit(Resource.Success(result))
         }.catch {
             emit(Resource.Error(it.message.toString()))

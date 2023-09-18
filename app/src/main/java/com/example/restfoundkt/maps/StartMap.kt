@@ -13,25 +13,25 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StartMap: ComponentActivity() {
+class StartMap : ComponentActivity() {
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val viewModel: MapViewModel by viewModels()
 
-    private val requestPermissionLauncher=registerForActivityResult(
+    private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) {
-        isGranded: Boolean -> if(isGranded){
+    ) { isGranded: Boolean ->
+        if (isGranded) {
             viewModel.getDeviceLocation(fusedLocationProviderClient)
         }
     }
 
-    fun askPermission()=when{
+    fun askPermission() = when {
         ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED->{
-                    viewModel.getDeviceLocation(fusedLocationProviderClient)
-                }
-        else ->{
+                == PackageManager.PERMISSION_GRANTED -> {
+            viewModel.getDeviceLocation(fusedLocationProviderClient)
+        }
+        else -> {
             requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)
         }
     }
