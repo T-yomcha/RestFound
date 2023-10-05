@@ -3,9 +3,12 @@ package com.example.restfoundkt.maps
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 
+//вычисление прямоугольника
 fun List<LatLng>.getCenterOfPolygon(): LatLngBounds {
     val centerBuilder: LatLngBounds.Builder = LatLngBounds.builder()
-    forEach { centerBuilder.include(LatLng(it.latitude, it.longitude)) }
+    forEach {
+        centerBuilder.include(LatLng(it.latitude, it.longitude))
+    }
     return centerBuilder.build()
 }
 
@@ -16,14 +19,19 @@ private data class CameraViewCoord(
     val xMin: Double
 )
 
+//вычисление точки точек для обзора камеры
 fun List<LatLng>.calculateCameraViewPoints(pctView: Double = .25): List<LatLng> {
     val coordMax = findMaxMins()
+    //макс мин широты долготы
     val dy = coordMax.yMax - coordMax.yMin
     val dx = coordMax.xMax - coordMax.xMin
+
+    //верх низ право лево границ обзора
     val yT = (dy * pctView) + coordMax.yMax
     val yB = coordMax.yMin - (dy * pctView)
     val xR = (dx * pctView) + coordMax.xMax
     val xL = coordMax.xMin - (dx * pctView)
+
     return listOf(
         LatLng(coordMax.xMax, yT),
         LatLng(coordMax.xMin, yB),
@@ -32,9 +40,11 @@ fun List<LatLng>.calculateCameraViewPoints(pctView: Double = .25): List<LatLng> 
     )
 }
 
+//макс мин для областей на карте
 private fun List<LatLng>.findMaxMins(): CameraViewCoord {
     check(size > 0) { "Cannot calculate the view coordinates of nothing." }
     var viewCoord: CameraViewCoord? = null
+    //проверка текущих значений на обновление
     for (point in this) {
         viewCoord = CameraViewCoord(
             yMax = viewCoord?.yMax?.let { yMax ->

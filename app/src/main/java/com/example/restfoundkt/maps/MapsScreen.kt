@@ -14,8 +14,17 @@ import com.google.maps.android.compose.*
 import android.content.Context
 import android.location.Location
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.restfoundkt.navigation.Screens
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.coroutines.launch
@@ -66,7 +75,6 @@ fun mapsScreen(
                     }
                 }
             }
-
             // NOTE: Some features of the MarkerInfoWindow don't work currently. See docs:
             // https://github.com/googlemaps/android-maps-compose#obtaining-access-to-the-raw-googlemap-experimental
             // So you can use clusters as an alternative to markers.
@@ -81,6 +89,19 @@ fun mapsScreen(
 //                draggable = true
 //            )
         }
+        Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(13.dp),
+            contentAlignment = Alignment.CenterEnd){
+                IconButton(onClick = {
+                    navController.navigate(Screens.RoomScreen.route)
+                }) {
+                    Icon(imageVector = Icons.Default.Favorite,
+                        contentDescription = "Favorite",
+                        tint = Color.Red
+                        )
+                }
+            }
     }
 //    // Center camera to include all the Zones.
 //    LaunchedEffect(state.clusterItems) {

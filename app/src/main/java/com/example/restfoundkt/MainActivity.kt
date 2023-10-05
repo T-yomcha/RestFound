@@ -52,8 +52,7 @@ class MainActivity : ComponentActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         askPermission()
         setContent {
-//            NavigationGraph(viewModel = viewModel).navigationGraph()
-            roomScreen()
+            NavigationGraph(viewModel = viewModel).navigationGraph()
         }
     }
 }

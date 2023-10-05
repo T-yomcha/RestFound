@@ -12,6 +12,7 @@ import com.example.restfoundkt.presentation.login_screen.signInScreen
 import com.example.restfoundkt.presentation.signup_screen.signUpScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import com.example.restfoundkt.favorites.roomScreen
 
 @AndroidEntryPoint
 class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity() {
@@ -21,7 +22,7 @@ class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity()
         val navController = rememberNavController()
         NavHost(
             navController = navController,
-            startDestination = Screens.SignUpScreen.route
+            startDestination = Screens.MapsScreen.route
         ) {
             composable(route = Screens.SignInScreen.route) {
                 signInScreen(viewModel = hiltViewModel(), navController = navController)
@@ -37,6 +38,9 @@ class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity()
                     viewModel = hiltViewModel(),
                     navController = navController
                 )
+            }
+            composable(route=Screens.RoomScreen.route){
+                roomScreen(navController=navController)
             }
         }
     }
