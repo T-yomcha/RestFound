@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
@@ -94,7 +95,7 @@ fun mapsScreen(
                 .padding(13.dp),
             contentAlignment = Alignment.CenterEnd){
                 IconButton(onClick = {
-                    navController.navigate(Screens.RoomScreen.route)
+                    navController.navigate(Screens.ReadDataScreen.route)
                 }) {
                     Icon(imageVector = Icons.Default.Favorite,
                         contentDescription = "Favorite",
@@ -102,6 +103,19 @@ fun mapsScreen(
                         )
                 }
             }
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .padding(13.dp),
+            contentAlignment = Alignment.TopStart){
+            IconButton(onClick = {
+                navController.navigate(Screens.SignUpScreen.route)
+            }) {
+                Icon(imageVector = Icons.Default.AccountBox,
+                    contentDescription = "Account",
+                    tint = Color.Black
+                )
+            }
+        }
     }
 //    // Center camera to include all the Zones.
 //    LaunchedEffect(state.clusterItems) {

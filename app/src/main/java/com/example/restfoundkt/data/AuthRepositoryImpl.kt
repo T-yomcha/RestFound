@@ -3,6 +3,7 @@ package com.example.restfoundkt.data
 import com.example.restfoundkt.util.Resource
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

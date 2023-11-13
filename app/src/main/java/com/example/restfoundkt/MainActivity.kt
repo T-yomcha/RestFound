@@ -1,13 +1,25 @@
 package com.example.restfoundkt
 
 
+import ContactForm
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import com.example.restfoundkt.favorites.roomScreen
@@ -17,6 +29,7 @@ import com.example.restfoundkt.maps.mapsScreen
 
 import com.example.restfoundkt.navigation.NavigationGraph
 import com.example.restfoundkt.navigation.Screens
+import com.example.restfoundkt.realtime_database.ContactList
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 

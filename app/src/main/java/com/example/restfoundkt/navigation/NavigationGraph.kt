@@ -1,5 +1,6 @@
 package com.example.restfoundkt.navigation
 
+import ContactForm
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,6 +14,7 @@ import com.example.restfoundkt.presentation.signup_screen.signUpScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import com.example.restfoundkt.favorites.roomScreen
+import com.example.restfoundkt.realtime_database.ContactList
 
 @AndroidEntryPoint
 class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity() {
@@ -41,6 +43,12 @@ class NavigationGraph(private val viewModel: MapViewModel) : ComponentActivity()
             }
             composable(route=Screens.RoomScreen.route){
                 roomScreen(navController=navController)
+            }
+            composable(route=Screens.AddDataScreen.route){
+                ContactForm(navController = navController)
+            }
+            composable(route=Screens.ReadDataScreen.route){
+                ContactList(navController=navController)
             }
         }
     }

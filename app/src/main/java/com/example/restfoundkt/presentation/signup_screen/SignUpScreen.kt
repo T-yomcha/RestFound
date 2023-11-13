@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -13,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +43,7 @@ fun signUpScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Orange300),
+            .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -51,12 +54,13 @@ fun signUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 30.dp, end = 30.dp),
-            colors = TextFieldDefaults.textFieldColors(backgroundColor = Blue300),
+            colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Blue),
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
             placeholder = {
                 Text(text = "Email", color = Color.White)
-            }
+            },
+            textStyle = TextStyle(color = Color.White)
         )
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -67,13 +71,13 @@ fun signUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 30.dp, end = 30.dp),
-            colors = TextFieldDefaults.textFieldColors(backgroundColor = Blue300),
+            colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Blue),
             shape = RoundedCornerShape(8.dp),
             singleLine = true,
             placeholder = {
                 Text(text = "Password", color = Color.White)
-            }
-
+            },
+            textStyle = TextStyle(color=Color.White)
         )
         Button(
             onClick = {
@@ -85,7 +89,7 @@ fun signUpScreen(
                 .fillMaxWidth()
                 .padding(top = 30.dp, start = 50.dp, end = 50.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Blue300,
+                backgroundColor = Color.Blue,
                 contentColor = Color.White
             ),
             shape = RoundedCornerShape(30.dp)

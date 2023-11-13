@@ -45,7 +45,7 @@ fun roomScreen(favouritesViewModel: FavouritesViewModel = viewModel(factory = Fa
                 modifier = Modifier.weight(1f),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.White
-                )
+                ),
             )
             IconButton(
                 onClick = {
